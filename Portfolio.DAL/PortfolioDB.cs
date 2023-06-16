@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Portfolio.DAL.Models;
 using Portfolio.DAL.Models.Account;
+using Portfolio.DAL.Models.Protfolio;
 
 namespace Portfolio.DAL
 {
@@ -41,24 +42,13 @@ namespace Portfolio.DAL
             modelBuilder.Entity<UserToken>()
                 .ToTable("UserToken");
 
-            //modelBuilder.UseIdentityColumns();
-
-
-
-            //Unique Index
-            //modelBuilder.Entity<FeatureAction>().HasKey(sc => new { sc.FeatureId, sc.ActionId });
-
-            //Default Value
-            //modelBuilder.Entity<Action>().Property(x => x.Id).HasDefaultValueSql("NEWID()");
+            modelBuilder.Entity<Picture>()
+                .ToTable("Picture", "Gallery")
+                .Property(x=>x.CreatedAt)
+                .HasDefaultValue(DateTime.Now);
+            modelBuilder.Entity<PictureGroup>()
+                .ToTable("PictureGroup", "Gallery");
         }
-
-        //IPersistedGrantDbContext Interface
-
-        //public static readonly ILoggerFactory AppLoggerFactory =
-        //    LoggerFactory.Create(builder =>
-        //        builder.AddFilter((category, level) =>
-        //        category == DbLoggerCategory.Database.Command.Name && level == LogLevel.Warning)
-        //        .AddConsole());
 
 
         public virtual DbSet<User> User { get; set; }
@@ -67,5 +57,7 @@ namespace Portfolio.DAL
         public virtual DbSet<UserRole> UserRole { get; set; }
         public virtual DbSet<UserToken> UserToken { get; set; }
         public virtual DbSet<Role> Role { get; set; }
+        public virtual DbSet<Picture> Picture { get; set; }
+        public virtual DbSet<PictureGroup> PictureGroup { get; set; }
     }
 }

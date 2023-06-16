@@ -15,7 +15,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.WebAPI", "webapi\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.DAL", "Portfolio.DAL\Portfolio.DAL.csproj", "{8A4E3B6B-A3EB-4492-8967-197AB8CA55A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portfolio.BLL", "Portfolio.BLL\Portfolio.BLL.csproj", "{7DD496B9-F00D-4420-AA96-FCB5009A46B3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.BLL", "Portfolio.BLL\Portfolio.BLL.csproj", "{7DD496B9-F00D-4420-AA96-FCB5009A46B3}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8A4E3B6B-A3EB-4492-8967-197AB8CA55A7} = {8A4E3B6B-A3EB-4492-8967-197AB8CA55A7}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

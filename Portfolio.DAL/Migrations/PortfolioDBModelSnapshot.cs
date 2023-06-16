@@ -230,6 +230,59 @@ namespace Portfolio.DAL.Migrations
                     b.ToTable("UserToken", (string)null);
                 });
 
+            modelBuilder.Entity("Portfolio.DAL.Models.Protfolio.Picture", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<string>("Name")
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("PictureUrl")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid?>("PrictureGroupId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("TakenAt")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PrictureGroupId");
+
+                    b.ToTable("Picture", "Gallery");
+                });
+
+            modelBuilder.Entity("Portfolio.DAL.Models.Protfolio.PictureGroup", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("PictureGroup", "Gallery");
+                });
+
             modelBuilder.Entity("Portfolio.DAL.Models.Account.RoleClaim", b =>
                 {
                     b.HasOne("Portfolio.DAL.Models.Account.Role", null)
@@ -279,6 +332,18 @@ namespace Portfolio.DAL.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Portfolio.DAL.Models.Protfolio.Picture", b =>
+                {
+                    b.HasOne("Portfolio.DAL.Models.Protfolio.PictureGroup", null)
+                        .WithMany("Pictures")
+                        .HasForeignKey("PrictureGroupId");
+                });
+
+            modelBuilder.Entity("Portfolio.DAL.Models.Protfolio.PictureGroup", b =>
+                {
+                    b.Navigation("Pictures");
                 });
 #pragma warning restore 612, 618
         }

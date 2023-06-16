@@ -3,6 +3,11 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Portfolio.DAL;
 using Portfolio.DAL.Models.Account;
+using Portfolio.BLL.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
+using Portfolio.WebAPI.JwtFeatures;
 
 namespace Portfolio.WebAPI
 {
@@ -15,11 +20,23 @@ namespace Portfolio.WebAPI
 
         public IConfiguration Configuration { get; }
 
-       public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services)
         {
-            
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(
+                                  policy =>
+                                  {
+                                      policy.AllowAnyOrigin()
+                                            .AllowAnyHeader()
+                                            .AllowAnyMethod();
+                                  });
+            });
             services.AddEndpointsApiExplorer();
             services.AddSwaggerGen();
+
+            services.AddScoped<IGalleryService, GalleryService>();
+            services.AddScoped<JwtHandler>();
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
             services.Configure<PortfolioDBConnectionSetting>(Configuration.GetSection("ConnectionStrings"));
@@ -31,16 +48,42 @@ namespace Portfolio.WebAPI
                 .UseLazyLoadingProxies();
             });
 
-            services.AddTransient<PortfolioDBContextFactory,PortfolioDBContextFactory>();
+            services.AddTransient<PortfolioDBContextFactory, PortfolioDBContextFactory>();
 
-            //services.AddDefaultIdentity<IdentityUser>().AddEntityFrameworkStores<PortfolioDB>();
-            services.AddIdentity<User, Role>()
+
+            services.AddIdentity<User, Role>(opt =>
+            {
+                opt.Password.RequiredLength = 7;
+                opt.Password.RequireDigit = false;
+                opt.User.RequireUniqueEmail = true;
+            })
                 .AddEntityFrameworkStores<PortfolioDB>();
+
+            var jwtSettings = Configuration.GetSection("JwtSettings");
+            services.AddAuthentication(opt =>
+            {
+                opt.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                opt.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidateLifetime = true,
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = jwtSettings["validIssuer"],
+                    ValidAudience = jwtSettings["validAudience"],
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8
+                        .GetBytes(jwtSettings.GetSection("securityKey").Value))
+                };
+            });
+
             services.AddControllers();
 
         }
 
-       public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -49,8 +92,11 @@ namespace Portfolio.WebAPI
             }
 
             app.UseHttpsRedirection();
-            
+
             app.UseRouting();
+            app.UseCors();
+
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

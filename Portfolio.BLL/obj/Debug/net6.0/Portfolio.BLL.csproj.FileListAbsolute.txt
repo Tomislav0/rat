@@ -10,3 +10,6 @@ C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.BLL\obj\Debug\net6.0\Port
 C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.BLL\obj\Debug\net6.0\refint\Portfolio.BLL.dll
 C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.BLL\obj\Debug\net6.0\Portfolio.BLL.pdb
 C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.BLL\obj\Debug\net6.0\ref\Portfolio.BLL.dll
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.BLL\bin\Debug\net6.0\Portfolio.DAL.dll
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.BLL\bin\Debug\net6.0\Portfolio.DAL.pdb
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.BLL\obj\Debug\net6.0\Portfolio.BLL.csproj.CopyComplete
