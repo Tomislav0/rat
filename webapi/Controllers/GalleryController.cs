@@ -58,5 +58,13 @@ namespace Portfolio.WebAPI.Controllers
             await galleryService.QuickImport(quickImport);
         }
 
+        [HttpDelete]
+        [Authorize]
+        [Route("photo/{photoId}")]
+        public async Task DeletePhoto( Guid photoId)
+        {
+            await galleryService.DeletePhoto(photoId);
+        }
+
     }
 }

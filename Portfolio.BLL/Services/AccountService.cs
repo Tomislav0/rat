@@ -14,6 +14,7 @@ namespace Portfolio.BLL.Services
 
         public Task CreateGroup(PictureGroupBM group);
         public Task QuickImport(QuickImportBM model);
+        public Task DeletePhoto(Guid photoId);
     }
     public class GalleryService : IGalleryService
     {
@@ -78,6 +79,14 @@ namespace Portfolio.BLL.Services
 
             await context.AddRangeAsync(pictures);
             await context.SaveChangesAsync();
+        }
+        public async Task DeletePhoto(Guid photoId)
+        {
+            var picture = await context.Picture.FirstAsync(w => w.Id == photoId);
+            context.Picture.Remove(picture);
+
+            await context.SaveChangesAsync();
+
         }
     }
 }
