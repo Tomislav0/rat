@@ -1,0 +1,14 @@
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\bin\Release\net6.0\Portfolio.DAL.deps.json
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\bin\Release\net6.0\Portfolio.DAL.runtimeconfig.json
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\bin\Release\net6.0\Portfolio.DAL.dll
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\bin\Release\net6.0\Portfolio.DAL.pdb
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.csproj.AssemblyReference.cache
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.AssemblyInfoInputs.cache
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.AssemblyInfo.cs
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.csproj.CoreCompileInputs.cache
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.dll
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\refint\Portfolio.DAL.dll
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.pdb
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\Portfolio.DAL.genruntimeconfig.cache
+C:\Users\tomis\source\repos\Fotomi_Portfolio\Portfolio.DAL\obj\Release\net6.0\ref\Portfolio.DAL.dll
